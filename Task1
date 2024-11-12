@@ -1,0 +1,47 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create a synthetic dataset
+np.random.seed(0)
+data_size = 100
+data = {
+    'A': np.random.rand(data_size) * 100,
+    'B': np.random.rand(data_size) * 50,
+    'Category': np.random.choice(['X', 'Y'], data_size)
+}
+
+# Convert to a DataFrame
+df = pd.DataFrame(data)
+
+# Display basic statistics
+print("Basic Statistics:")
+print(df.describe())
+
+# Scatter plot using Matplotlib
+plt.figure(figsize=(10, 5))
+plt.scatter(df['A'], df['B'], c='blue', alpha=0.5)
+plt.title('Scatter Plot of A vs B')
+plt.xlabel('A')
+plt.ylabel('B')
+plt.grid(True)
+plt.show()
+
+# Scatter plot using Seaborn
+plt.figure(figsize=(10, 5))
+sns.scatterplot(data=df, x='A', y='B', hue='Category', style='Category', palette='deep')
+plt.title('Seaborn Scatter Plot of A vs B')
+plt.xlabel('A')
+plt.ylabel('B')
+plt.grid(True)
+plt.show()
+
+# Box plot using Seaborn
+plt.figure(figsize=(10, 5))
+sns.boxplot(x='Category', y='A', data=df)
+plt.title('Box Plot of A by Category')
+plt.xlabel('Category')
+plt.ylabel('A')
+plt.grid(True)
+plt.show()
